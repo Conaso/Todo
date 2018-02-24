@@ -26,16 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> paret, View view, int position, long id){
-                ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
-
-                String item = (String)adapter.getItem(position);
-                adapter.remove(item);
-                adapter.add(item);
-            }
-        });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -50,22 +40,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position,long id){
+                @Override
+                public boolean onItemLongClick (AdapterView < ? > parent, View view,int position,
+                long id){
+                    ArrayAdapter adapter = (ArrayAdapter) listView.getAdapter();
+                    Toast.makeText(getContext(), "を消去しましたよ～", Toast.LENGTH_SHORT).show();
 
-                ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
-                Toast.makeText(getContext() , "を消去しましたよ～", Toast.LENGTH_SHORT).show();
+                    String item = (String) adapter.getItem(position);
+                    adapter.remove(item);
 
-                String item = (String)adapter.getItem(position);
-                adapter.remove(item);
-
-                return false;
-            }
-        });
-
-
-
-
+                    return false;
+                }
+         });
     };
 
     public void add (View v){
