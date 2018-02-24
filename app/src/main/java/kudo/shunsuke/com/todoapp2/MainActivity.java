@@ -1,5 +1,6 @@
 package kudo.shunsuke.com.todoapp2;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,13 +48,35 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position,long id){
+
+                ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
+                Toast.makeText(getContext() , "を消去しましたよ～", Toast.LENGTH_SHORT).show();
+
+                String item = (String)adapter.getItem(position);
+                adapter.remove(item);
+
+                return false;
+            }
+        });
+
+
+
+
     };
 
     public void add (View v){
         String text;
         text = editText.getText().toString();
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, text + "を追加しましたよ", Toast.LENGTH_SHORT).show();
 
         adapter.add(text);
+    }
+
+    public Context getContext(){
+        return this;
     }
 }
