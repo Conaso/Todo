@@ -24,19 +24,25 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText)findViewById(R.id.editText);
         adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1);
 
+        class tag{
+
+        }
+
+
         listView.setAdapter(adapter);
 
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
-                public boolean onItemLongClick (AdapterView < ? > parent, View view,int position, long id){
+                public boolean onItemLongClick (AdapterView < ? > parent, View view,int position, long id) {
+
 
                     ArrayAdapter adapter = (ArrayAdapter) listView.getAdapter();
-
                     String item = (String) adapter.getItem(position);
-                    //タッチして消しているとこはlistViewではなく、adapterって部分なんだよ～
-                    Toast.makeText(getText(), item + "を消去しましたよ～", Toast.LENGTH_SHORT).show();
-                    adapter.remove(item);
+
+                        //タッチして消しているとこはlistViewではなく、adapterって部分なんだよ～
+                        Toast.makeText(getText(), item + "を消去しましたよ～", Toast.LENGTH_SHORT).show();
+                        adapter.remove(item);
 
                     return false;
                 }
@@ -44,12 +50,20 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void add (View v){
+
+
         String text;
         text = editText.getText().toString();
-        Toast.makeText(this, text + "を追加しましたよ", Toast.LENGTH_SHORT).show();
-        adapter.add(text);
-        editText.getText().clear();
+
+        if (text.equals( "")) {
+            // do nothing
+        }else {
+            Toast.makeText(this, text + "を追加しましたよ", Toast.LENGTH_SHORT).show();
+            adapter.add(text);
+            editText.getText().clear();
+        }
     }
 
     public Context getText(){return this;}
 }
+
