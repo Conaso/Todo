@@ -32,11 +32,10 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onItemLongClick (AdapterView < ? > parent, View view,int position, long id){
 
                     ArrayAdapter adapter = (ArrayAdapter) listView.getAdapter();
-                    String text;
-                    text = editText.getText().toString();
-                    Toast.makeText(getText(), text + "を消去しましたよ～", Toast.LENGTH_SHORT).show();
 
                     String item = (String) adapter.getItem(position);
+                    //タッチして消しているとこはlistViewではなく、adapterって部分なんだよ～
+                    Toast.makeText(getText(), item + "を消去しましたよ～", Toast.LENGTH_SHORT).show();
                     adapter.remove(item);
 
                     return false;
@@ -48,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
         String text;
         text = editText.getText().toString();
         Toast.makeText(this, text + "を追加しましたよ", Toast.LENGTH_SHORT).show();
-
         adapter.add(text);
+        editText.getText().clear();
     }
 
-    public Context getText(){
-        return this;
-    }
+    public Context getText(){return this;}
 }
