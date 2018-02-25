@@ -28,23 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public  boolean onItemLongClick(AdapterView<?> paret, View view, int position, long id){
-                ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
-
-                String item = (String)adapter.getItem(position);
-                adapter.remove(item);
-
-                return false;
-            }
-        });
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
-                public boolean onItemLongClick (AdapterView < ? > parent, View view,int position,
-                long id){
+                public boolean onItemLongClick (AdapterView < ? > parent, View view,int position, long id){
+
                     ArrayAdapter adapter = (ArrayAdapter) listView.getAdapter();
-                    Toast.makeText(getContext(), "を消去しましたよ～", Toast.LENGTH_SHORT).show();
+                    String text;
+                    text = editText.getText().toString();
+                    Toast.makeText(getText(), text + "を消去しましたよ～", Toast.LENGTH_SHORT).show();
 
                     String item = (String) adapter.getItem(position);
                     adapter.remove(item);
@@ -62,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.add(text);
     }
 
-    public Context getContext(){
+    public Context getText(){
         return this;
     }
 }
